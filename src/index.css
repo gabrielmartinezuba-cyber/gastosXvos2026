@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #6366f1;
+  --color-brand-secondary: #f43f5e;
+  --color-brand-success: #10b981;
+  --color-brand-warning: #f59e0b;
+  --color-bg-base: #fdfefe;
+}
+
+:root {
+  font-family: 'Outfit', 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light;
+  color: #1e293b;
+  background-color: var(--color-bg-base);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  overflow: hidden; /* El scroll lo maneja el MainLayout */
+  
+  /* Mesh Gradient Premium y Cálido */
+  background: 
+    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(244, 63, 94, 0.05) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.05) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(245, 158, 11, 0.05) 0px, transparent 50%),
+    #ffffff;
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-black tracking-tight;
+  }
+}
+
+/* Glassmorphism Ultra-Clean */
+.glass-card {
+  @apply backdrop-blur-2xl bg-white/80 border border-white/40;
+}
+
+.glass-dock {
+  @apply backdrop-blur-3xl bg-white/70 border-t border-white/50;
+}
+
+/* Sombras Orgánicas Teñidas */
+.shadow-indigo-premium {
+  box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.12);
+}
+
+.shadow-emerald-premium {
+  box-shadow: 0 25px 50px -12px rgba(16, 185, 129, 0.12);
+}
+
+.shadow-orange-premium {
+  box-shadow: 0 25px 50px -12px rgba(245, 158, 11, 0.15);
+}
+
+.shadow-dock {
+  box-shadow: 0 -10px 40px -10px rgba(0, 0, 0, 0.08);
+}
+
+/* Custom Scrollbar Hide */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Typography Utilities */
+.text-balance-amount {
+  @apply text-5xl font-black tracking-tighter leading-none;
+}
+
+.text-caps-label {
+  @apply text-[10px] font-black uppercase tracking-[0.25em] text-slate-400;
+}
