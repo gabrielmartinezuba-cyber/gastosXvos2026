@@ -8,7 +8,6 @@ const categories = [
   { id: 'Supermercado', icon: ShoppingCart },
   { id: 'Comida', icon: Utensils },
   { id: 'Servicios', icon: Zap },
-  { id: 'Préstamo', icon: Banknote },
   { id: 'Otros', icon: Tag }
 ]
 
