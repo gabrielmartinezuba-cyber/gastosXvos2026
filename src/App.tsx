@@ -11,7 +11,7 @@ import { ExpenseList } from './components/Dashboard/ExpenseList'
 import { FixedExpensesScreen } from './components/FixedExpenses/FixedExpensesScreen'
 import { LoansScreen } from './components/Loans/LoansScreen'
 import { ProfileScreen } from './components/Profile/ProfileScreen'
-import { AddExpenseModal } from './components/Dashboard/AddExpenseModal'
+import { AddExpenseForm } from './components/Dashboard/AddExpenseForm'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Loader2, Sparkles, CheckCircle2, Plus } from 'lucide-react'
 
@@ -21,7 +21,7 @@ function App() {
   const { fetchLoans } = useLoanStore()
   const [loading, setLoading] = useState(true)
   const [activeTab, setActiveTab] = useState<'diarios' | 'fijos' | 'prestamos' | 'perfil'>('diarios')
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isAddingExpense, setIsAddingExpense] = useState(false)
   const [settleSuccess, setSettleSuccess] = useState(false)
 
   useEffect(() => {
@@ -93,23 +93,27 @@ function App() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="space-y-8"
+              className="space-y-6"
             >
               <BalanceHeader />
               
               <div className="grid grid-cols-2 gap-4">
                 <button 
-                  onClick={() => setIsModalOpen(true)}
-                  className="flex items-center justify-center gap-3 bg-slate-900 text-white py-5 rounded-[2rem] text-xs font-black uppercase tracking-widest shadow-xl active:scale-95 transition-all"
+                  onClick={() => setIsAddingExpense(!isAddingExpense)}
+                  className={`flex items-center justify-center gap-3 py-5 rounded-[2rem] text-[10px] font-black uppercase tracking-widest shadow-sm active:scale-95 transition-all border ${
+                    isAddingExpense 
+                      ? 'bg-slate-100 text-slate-500 border-slate-200' 
+                      : 'bg-indigo-50 text-indigo-600 border-indigo-100 hover:bg-indigo-100'
+                  }`}
                 >
-                  <Plus size={18} strokeWidth={3} />
-                  <span>Nuevo Gasto</span>
+                  <Plus size={16} strokeWidth={3} className={isAddingExpense ? 'rotate-45 transition-transform' : 'transition-transform'} />
+                  <span>{isAddingExpense ? 'Cerrar' : 'Agregar'}</span>
                 </button>
 
                 <button 
                   onClick={handleSettle}
                   disabled={storeLoading || settleSuccess}
-                  className={`flex items-center justify-center gap-3 py-5 rounded-[2rem] text-[10px] font-black uppercase tracking-widest transition-all border shadow-premium active:scale-95 ${
+                  className={`flex items-center justify-center gap-3 py-5 rounded-[2rem] text-[10px] font-black uppercase tracking-widest transition-all border shadow-sm active:scale-95 ${
                     settleSuccess 
                       ? 'bg-emerald-500 text-white border-emerald-400' 
                       : 'bg-white text-emerald-600 border-emerald-100 hover:bg-emerald-50'
@@ -119,6 +123,12 @@ function App() {
                   <span>{settleSuccess ? 'Limpio' : 'Limpiador'}</span>
                 </button>
               </div>
+
+              <AnimatePresence>
+                {isAddingExpense && (
+                  <AddExpenseForm onClose={() => setIsAddingExpense(false)} />
+                )}
+              </AnimatePresence>
 
               <ExpenseList />
             </motion.div>
@@ -158,8 +168,6 @@ function App() {
           )}
         </AnimatePresence>
       </div>
-
-      <AddExpenseModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </MainLayout>
   )
 }
