@@ -52,45 +52,45 @@ export const BalanceHeader = () => {
         <span className="text-[10px] font-black text-emerald-100 uppercase tracking-[0.25em] opacity-80">Estado de cuenta</span>
       </div>
       
-      <div className="relative z-10 min-w-0">
+      <div className="relative z-10">
         {Math.abs(balance) < 1 ? (
-          <h2 className="text-3xl font-black text-white tracking-tighter truncate">Están a mano</h2>
+          <h2 className="text-3xl font-black text-white tracking-tighter">Están a mano</h2>
         ) : balance > 0 ? (
-          <div className="space-y-1 min-w-0">
-            <h2 className="text-xl font-black text-emerald-100/70 tracking-tight leading-none truncate">
+          <div className="space-y-1">
+            <h2 className="text-xl md:text-2xl font-black text-emerald-100/70 tracking-tight leading-none break-words">
               {partnerName} te debe
             </h2>
-            <p className="text-4xl md:text-5xl font-black text-white tracking-tighter truncate leading-none">
+            <p className="text-4xl md:text-5xl font-black text-white tracking-tighter leading-none break-words">
               {formatCurrency(balance)}
             </p>
           </div>
         ) : (
-          <div className="space-y-1 min-w-0">
-            <h2 className="text-xl font-black text-emerald-100/70 tracking-tight leading-none truncate">
+          <div className="space-y-1">
+            <h2 className="text-xl md:text-2xl font-black text-emerald-100/70 tracking-tight leading-none break-words">
               Le debés a {partnerName}
             </h2>
-            <p className="text-4xl md:text-5xl font-black text-white tracking-tighter truncate leading-none">
+            <p className="text-4xl md:text-5xl font-black text-white tracking-tighter leading-none break-words">
               {formatCurrency(balance)}
             </p>
           </div>
         )}
       </div>
 
-      {/* Sub-tarjetas Brutas Invertidas */}
-      <div className="mt-8 grid grid-cols-2 gap-3 min-w-0">
-        <div className="bg-white/10 backdrop-blur-md rounded-3xl p-5 border border-white/10 flex flex-col gap-1 min-w-0 overflow-hidden">
-          <div className="flex items-center gap-1.5 text-emerald-200 font-black text-[8px] uppercase tracking-widest truncate">
-            <ArrowUpRight size={10} strokeWidth={3} />
-            <span>Tus Gastos</span>
+      {/* Totales Brutos */}
+      <div className="grid grid-cols-2 gap-4 pt-6 mt-8 border-t border-white/20">
+        <div className="space-y-1 overflow-hidden">
+          <div className="flex items-center gap-1.5 text-emerald-200 font-black text-[8px] uppercase tracking-widest">
+            <ArrowUpRight size={10} strokeWidth={3} className="shrink-0" />
+            <span className="truncate">Tus Gastos</span>
           </div>
-          <p className="text-lg font-black text-white tracking-tighter truncate">{formatCurrency(totalBrutoMio)}</p>
+          <p className="text-xl font-black text-white tracking-tighter break-words">{formatCurrency(totalBrutoMio)}</p>
         </div>
-        <div className="bg-white/10 backdrop-blur-md rounded-3xl p-5 border border-white/10 flex flex-col gap-1 min-w-0 overflow-hidden">
-          <div className="flex items-center gap-1.5 text-emerald-200 font-black text-[8px] uppercase tracking-widest truncate">
-            <ArrowDownLeft size={10} strokeWidth={3} />
-            <span>Gastos de {partnerName}</span>
+        <div className="space-y-1 overflow-hidden">
+          <div className="flex items-center gap-1.5 text-emerald-200 font-black text-[8px] uppercase tracking-widest">
+            <ArrowDownLeft size={10} strokeWidth={3} className="shrink-0" />
+            <span className="truncate">Gastos de {partnerName}</span>
           </div>
-          <p className="text-lg font-black text-white tracking-tighter truncate">{formatCurrency(totalBrutoPareja)}</p>
+          <p className="text-xl font-black text-white tracking-tighter break-words">{formatCurrency(totalBrutoPareja)}</p>
         </div>
       </div>
     </div>
