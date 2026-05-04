@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useExpenseStore } from '../../store/useExpenseStore'
 import { useAuthStore } from '../../store/authStore'
 import { motion } from 'framer-motion'
-import { ShoppingCart, Utensils, Zap, Banknote, Tag, Loader2, Users, Info } from 'lucide-react'
+import { ShoppingCart, Utensils, Zap, Tag, Loader2, Users, Info } from 'lucide-react'
 
 const categories = [
   { id: 'Supermercado', icon: ShoppingCart },
